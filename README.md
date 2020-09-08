@@ -7,7 +7,7 @@ version: '2'
 services:
   slackbot:
     container_name: slackbot
-    image: 591338382296.dkr.ecr.ap-southeast-1.amazonaws.com/carrotlicious/iot_slackbotc-armv32v7:0.0.1
+    image: carrotlicious/iot_slackbotc-armv32v7:0.0.1
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -16,5 +16,6 @@ services:
       - "8080:8080"
     environment:
       - "JAVA_OPTS=-Xmx512m -Xms128m"
+      - "SLACK_TOKEN=xxxxxx"
       - "spring_profiles_active=staging"
 ```
