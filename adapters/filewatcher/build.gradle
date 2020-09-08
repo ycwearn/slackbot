@@ -1,0 +1,18 @@
+dependencies {
+    implementation project(':common')
+    implementation project(':application')
+
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit', module: 'junit'
+    }
+    testCompile 'io.projectreactor:reactor-test'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit-pioneer:junit-pioneer:0.3.0'
+
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -1,0 +1,15 @@
+dependencies {
+
+    compile 'com.fasterxml.jackson.core:jackson-databind'
+    compile 'org.slf4j:slf4j-api'
+
+    testCompile 'org.assertj:assertj-core'
+    testCompile 'com.jayway.jsonpath:json-path'
+    testCompile 'org.junit.jupiter:junit-jupiter-api'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.mockito:mockito-junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

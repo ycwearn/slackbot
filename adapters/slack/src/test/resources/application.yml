@@ -1,0 +1,10 @@
+slack:
+  baseUrl: https://slack.com/api/
+  token: dummy_authentication_token
+  channel: iot_home
+  proxyHost: 127.0.0.1
+  proxyPort: 8080
+
+logging:
+  level:
+    com.carrotlicious.iot.slackbot: DEBUG

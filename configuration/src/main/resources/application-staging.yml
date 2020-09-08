@@ -1,0 +1,21 @@
+spring:
+  http:
+    log-request-details: true
+
+slack:
+  baseUrl: https://slack.com/api/
+  token: ${SLACK_TOKEN}
+  channel: webflux_demo
+  proxyHost: ${PROXY_HOST:}
+  proxyPort: ${PROXY_PORT:8080}
+
+filewatcher:
+  cacheSize: 5
+  deviceDirectories:
+      LIVING_ROOM : /mnt/monitor1
+      CARPORCH : /mnt/monitor2
+
+logging:
+  level:
+    com.carrotlicious.iot.slackbot: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE

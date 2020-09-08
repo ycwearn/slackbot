@@ -1,0 +1,8 @@
+include 'common'
+include 'application'
+include 'configuration'
+include 'adapters:web'
+include 'adapters:slack'
+include 'adapters:persistence'
+include 'adapters:filewatcher'
+

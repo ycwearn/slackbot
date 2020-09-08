@@ -1,0 +1,44 @@
+plugins {
+    id("org.springframework.boot") version "2.1.6.RELEASE"
+    id("com.bmuschko.docker-remote-api") version "6.6.1"
+}
+
+dependencies {
+    implementation project(':common')
+    implementation project(':application')
+    implementation project(':adapters:web')
+    implementation project(':adapters:slack')
+    implementation project(':adapters:persistence')
+    implementation project(':adapters:filewatcher')
+
+    implementation('org.springframework.boot:spring-boot-starter')
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'junit' // excluding junit 4
+    }
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+//    url = 'tcp://host.docker.internal:2375'
+}
+
+import com.bmuschko.gradle.docker.tasks.container.*
+import com.bmuschko.gradle.docker.tasks.image.*
+task buildDockerImage(type: DockerBuildImage, dependsOn: unpack) {
+    inputDir = file('.')
+    dockerFile = project.file('Dockerfile')
+    buildArgs = ['DEPENDENCY': "build/dependency"]
+    images.add('carrotlicious/' + project.rootProject.name + '-armv32v7:' + project.version)
+}
+
+def profiles = 'dev'
+bootRun {
+    args = ["--spring.profiles.active=" + profiles]
+}

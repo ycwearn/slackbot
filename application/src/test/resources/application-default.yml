@@ -1,0 +1,3 @@
+logging:
+  level:
+    com.carrotlicious.iot.slackbot: DEBUG
